@@ -3,7 +3,7 @@ return {
   branch = "main", -- Use this branch for the new version
   cmd = "VenvSelect",
   enabled = function()
-    return LazyVim.has("telescope.nvim")
+	  return require("lazy.core.config").plugins["telescope.nvim"] ~= nil
   end,
   opts = {
     settings = {
