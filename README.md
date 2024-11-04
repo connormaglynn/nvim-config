@@ -8,5 +8,5 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 Run the following commands
 
 ```shell
-brew install lazygit fzf font-jetbrains-mono-nerd-font fd pipenv ripgrep
+brew install lazygit fzf font-jetbrains-mono-nerd-font fd pipenv ripgrep terraform-ls
 ```
