@@ -8,6 +8,20 @@ return {
     config = function()
       local dap = require("dap")
       local dap_python = require("dap-python")
+
+      -- Function to ensure debugpy is installed in the active Python environment
+      local function ensure_debugpy(python_path)
+        local handle = io.popen(python_path .. " -m pip show debugpy 2>/dev/null")
+        local output = handle:read("*a")
+        handle:close()
+
+        if output == "" then
+          print("Installing debugpy for: " .. python_path)
+          os.execute(python_path .. " -m pip install --quiet debugpy")
+        end
+      end
+
+      -- Function to load environment variables from a .env file
       local function load_env_file()
         local env_file_path = vim.fn.getcwd() .. "/.env"
         local env_vars = {}
@@ -37,6 +51,9 @@ return {
         print("No Python interpreter found. Make sure your virtual environment is activated.")
         return
       end
+
+      -- Ensure debugpy is installed
+      ensure_debugpy(python_interpreter)
 
       -- Set up dap-python with the active Python interpreter
       dap_python.setup(python_interpreter)
