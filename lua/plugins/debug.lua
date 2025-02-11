@@ -1,4 +1,3 @@
--- lua/plugins/debug_flask.lua
 return {
   {
     "mfussenegger/nvim-dap",
