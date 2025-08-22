@@ -3,21 +3,20 @@ return {
   dependencies = {
     "neovim/nvim-lspconfig",
     "mfussenegger/nvim-dap",
-    "mfussenegger/nvim-dap-python", --optional
+    "mfussenegger/nvim-dap-python",
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
   },
   lazy = false,
-  branch = "regexp", -- This is the regexp branch, use this for the new version
+  branch = "regexp",
   opts = {
     notify_user_on_venv_activation = true,
-    pipenv_path = vim.fn.expand("~/.local/share/virtualenvs"), -- Automatically expand ~
-    pipenv_auto_detection = true,
     auto_activate = true,
+    name = ".venv",
+    pipenv_path = vim.fn.expand("~/.local/share/virtualenvs"),
+    pipenv_auto_detection = true,
   },
-  config = function(_, opts)
-    require("venv-selector").setup(opts)
-  end,
   keys = {
-    { ",v", "<cmd>VenvSelect<cr>" },
+    { ",v", "<cmd>VenvSelect<cr>", desc = "Select Python venv" },
+    { ",c", "<cmd>VenvSelectCached<cr>", desc = "Use cached Python venv" },
   },
 }
