@@ -7,7 +7,6 @@ return {
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
   },
   lazy = false,
-  branch = "regexp",
   opts = {
     notify_user_on_venv_activation = true,
     auto_activate = true,
