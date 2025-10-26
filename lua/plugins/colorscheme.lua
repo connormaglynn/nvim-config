@@ -1,6 +1,4 @@
 return {
-  { "ellisonleao/gruvbox.nvim" },
-  { "savq/melange-nvim" },
   {
     "folke/tokyonight.nvim",
     opts = {
