@@ -5,6 +5,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "antoinemadec/FixCursorHold.nvim", -- Required for Neotest
     "nvim-neotest/neotest-python", -- Python adapter for Neotest
+    "haydenmeade/neotest-jest",
   },
   opts = function()
     return {
@@ -13,6 +14,17 @@ return {
           dap = { justMyCode = false },
           args = { "--log-level", "DEBUG" },
           runner = "pytest",
+        }),
+        require("neotest-jest")({
+          jestCommand = "npm test --",
+          jestArguments = function(defaultArguments, context)
+            return defaultArguments
+          end,
+          env = { CI = true },
+          cwd = function(path)
+            return vim.fn.getcwd()
+          end,
+          isTestFile = require("neotest-jest.jest-util").defaultIsTestFile,
         }),
       },
     }
